@@ -43,7 +43,7 @@ void Graphic::clear() {
 	for (int y = 0; y < height; ++y) {
 		for (int x = 0; x < width; ++x) {
 
-			charBuffer[y][x] = '.';
+			charBuffer[y][x] = ' ';
 		}
 	}
 }
