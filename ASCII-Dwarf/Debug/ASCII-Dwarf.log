@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿Build started 3/26/2016 11:32:57 PM.
      1>Project "C:\Users\Victor\Documents\GitHub\ASCII-Dwarf\ASCII-Dwarf\ASCII-Dwarf.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
@@ -13,3 +14,8 @@
 Build succeeded.
 
 Time Elapsed 00:00:00.97
+=======
+﻿  ASCII-Graphics.cpp
+  ASCII-Dwarf.vcxproj -> C:\Users\GameDevClub\Desktop\ASCII-Dwarf\Debug\ASCII-Dwarf.exe
+  ASCII-Dwarf.vcxproj -> C:\Users\GameDevClub\Desktop\ASCII-Dwarf\Debug\ASCII-Dwarf.pdb (Partial PDB)
+>>>>>>> origin/master
