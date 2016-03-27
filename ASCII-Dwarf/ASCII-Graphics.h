@@ -1,6 +1,16 @@
 #pragma once
 #include <cstdlib>
+#include <algorithm>
 #include <iostream>
+#include <string>
+#include <vector>
+
+#define UP 0
+#define RIGHT 1
+#define DOWN 2
+#define LEFT 3
+
+using namespace std;
 
 namespace ASCII {
 
@@ -9,34 +19,30 @@ namespace ASCII {
 		int y;
 	};
 
-	enum Orientation {
-		UP = 0, RIGHT, DOWN, LEFT
-	};
-
 	class Graphic {
 	private:
 		int width;
 		int height;
 
-		char** charBuffer;
+		vector<vector<char>> charBuffer;
 
 		Coordinate position;
-		Orientation rotation;
 
 	public:
-		Graphic(const int width, const int height);
-		Graphic(const int width, const int height, const char** charBuffer);
+		Graphic(const int& width, const int& height);
+		Graphic(const int& width, const int& height, vector<vector<char>> initCharBuffer);
 
-		~Graphic();
+		void move(const int& dx, const int& dy);
+		void moveTo(const int& x, const int& y);
 
-		void move(const int dx, const int dy);
-		void moveTo(const int x, const int y);
+		const Coordinate getPosition() const;
+		vector<vector<char>> const getBuffer() const;
 
-		void rotate(const int rotation);  //will rotate rotation * (90 degrees)
-		void rotateTo(const int rotation);//will rotate to rotation * (90 degrees)
+		int getWidth() const;
+		int getHeight() const;
 
 		void clear();
-		void draw(const Graphic toDraw);
+		void draw(const Graphic& toDraw);
 		void flush() const;
 	};
 }
