@@ -36,8 +36,22 @@ namespace ASCII {
 		void rotateTo(const int rotation);//will rotate to rotation * (90 degrees)
 
 		void clear();
+<<<<<<< HEAD
 		void draw(const Graphic toDraw);
+=======
+		void draw(const Graphic& toDraw);
+		void drawWithAlpha(const Graphic& toDraw);
+>>>>>>> ASCII-Graphics
 		void flush() const;
+	};
+
+	class JumpingGraphic : Graphic {
+	public:
+		JumpingGraphic(const int& width, const int& height);
+		JumpingGraphic(const int& width, const int& height, vector<vector<char>> initCharBuffer);
+
+		void jump(const int& dx, const int& dy, Graphic& canvas);
+		void jumpTo(const int& x, const int& y, Graphic& canvas);
 	};
 }
 
