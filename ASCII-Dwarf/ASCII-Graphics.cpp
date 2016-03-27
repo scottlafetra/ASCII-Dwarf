@@ -53,10 +53,10 @@ void Graphic::draw(const Graphic& toDraw) {
 	Coordinate drawPos = toDraw.getPosition();
 
 	int yInit = max(0, -drawPos.y);
-	int yMax  = min(height - drawPos.y, toDraw.getHeight());
+	int yMax = min(height - drawPos.y, toDraw.getHeight());
 
 	int xInit = max(0, -drawPos.x);
-	int xMax  = min(width - drawPos.x, toDraw.getWidth());
+	int xMax = min(width - drawPos.x, toDraw.getWidth());
 
 	for (int y = yInit; y < yMax; ++y) {
 		for (int x = xInit; x < xMax; ++x) {
@@ -65,6 +65,27 @@ void Graphic::draw(const Graphic& toDraw) {
 		}
 	}
 }
+
+void Graphic::drawWithAlpha(const Graphic& toDraw) {
+
+		Coordinate drawPos = toDraw.getPosition();
+
+		int yInit = max(0, -drawPos.y);
+		int yMax = min(height - drawPos.y, toDraw.getHeight());
+
+		int xInit = max(0, -drawPos.x);
+		int xMax = min(width - drawPos.x, toDraw.getWidth());
+
+		for (int y = yInit; y < yMax; ++y) {
+			for (int x = xInit; x < xMax; ++x) {
+
+				if (toDraw.getBuffer()[y][x] != ' ') {
+					charBuffer[drawPos.y + y][drawPos.x + x] = toDraw.getBuffer()[y][x];
+				}
+			}
+		}
+}
+
 
 void Graphic::flush() const {
 
@@ -89,4 +110,32 @@ int Graphic::getWidth() const {
 
 int Graphic::getHeight() const {
 	return height;
+}
+
+JumpingGraphic::JumpingGraphic(const int& width, const int& height)
+: Graphic(width, height) {}
+
+JumpingGraphic::JumpingGraphic(const int& width, const int& height, vector<vector<char>> initCharBuffer)
+: Graphic(width, height, initCharBuffer) {}
+
+void JumpingGraphic::jump(const int& dx, const int& dy, Graphic& canvas) {
+	Graphic shadow(getWidth(), getHeight());//create a shadow to delete
+	shadow.moveTo(getPosition().x, getPosition().y);
+
+	canvas.draw(shadow);
+
+	move(dx, dy);
+
+	canvas.draw(*this);
+}
+
+void JumpingGraphic::jumpTo(const int& x, const int& y, Graphic& canvas) {
+	Graphic shadow(getWidth(), getHeight());//create a shadow to delete
+	shadow.moveTo(getPosition().x, getPosition().y);
+
+	canvas.draw(shadow);
+
+	moveTo(x, y);
+
+	canvas.draw(*this);
 }

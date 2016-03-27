@@ -43,7 +43,17 @@ namespace ASCII {
 
 		void clear();
 		void draw(const Graphic& toDraw);
+		void drawWithAlpha(const Graphic& toDraw);
 		void flush() const;
+	};
+
+	class JumpingGraphic : Graphic {
+	public:
+		JumpingGraphic(const int& width, const int& height);
+		JumpingGraphic(const int& width, const int& height, vector<vector<char>> initCharBuffer);
+
+		void jump(const int& dx, const int& dy, Graphic& canvas);
+		void jumpTo(const int& x, const int& y, Graphic& canvas);
 	};
 }
 
